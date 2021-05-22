@@ -92,10 +92,24 @@ export default class ALxFocusMode extends Plugin {
     }
   }
 
+  prev: { key: string; time: number } = { key: "", time: 0 };
+
   async onload() {
     console.log("Loading Focus Mode plugin ...");
 
     await this.loadSettings();
+
+    this.registerDomEvent(document, "keydown", (ev) => {
+      if (
+        this.focusModeActive &&
+        this.prev.key === "Escape" &&
+        ev.key === "Escape" &&
+        Date.now() - this.prev.time < 500
+      ) {
+        this.disableFocusMode();
+      }
+      this.prev = { key: ev.key, time: Date.now() };
+    });
 
     if (
       this.settings.hideLeftRibbonEntirely &&
