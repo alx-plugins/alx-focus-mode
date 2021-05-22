@@ -106,7 +106,7 @@ export default class ALxFocusMode extends Plugin {
         this.focusModeActive &&
         this.prev.key === "Escape" &&
         ev.key === "Escape" &&
-        Date.now() - this.prev.time < 500
+        Date.now() - this.prev.time < 250
       ) {
         this.disableFocusMode();
       }
