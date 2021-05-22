@@ -1,7 +1,7 @@
 {
-    "name": "obsidian-focus-mode",
-    "version": "1.4.0",
-    "description": "Add Focus Mode to Obsidian.",
+    "name": "alx-focus-mode",
+    "version": "0.0.0",
+    "description": "An fork of obsidian-focus-mode with custom control of focus mode style",
     "main": "main.js",
     "scripts": {
         "dev": "rollup --config rollup.config.js -w",
@@ -11,7 +11,7 @@
     "keywords": [],
     "author": "",
     "license": "MPL-2.0",
-    "repository": "https://github.com/ryanpcmcquen/obsidian-focus-mode",
+    "repository": "https://github.com/alx-plugin/alx-focus-mode",
     "devDependencies": {
         "@rollup/plugin-commonjs": "^18.0.0",
         "@rollup/plugin-node-resolve": "^11.2.1",

@@ -1,22 +1,20 @@
-## Obsidian Focus Mode
+# Focus Mode with Configurable Style
 
-Add Focus Mode to Obsidian.
+An fork of [obsidian-focus-mode](https://github.com/ryanpcmcquen/obsidian-focus-mode) that add custom control of focus mode style.
 
-![Focus Mode Demo](./doc/obsidian-super-focus-mode-demo-v2.gif)
+## Installation
 
-Now with _Super Focus_ mode (<kbd>Shift</kbd> + `Left Click`), which will only focus on the active pane. The original behavior still exists on a normal `Left Click`.
+### From Obsidian
 
-![Super Focus Mode and Command/Hotkey demo](./doc/obsidian-command-focus-mode-demo-v1.gif)
+> Not avaiable
 
-### Hotkeys
+### From GitHub
 
-| Hotkeys                                                                | Action                                     |
-| ---------------------------------------------------------------------- | ------------------------------------------ |
-| <kbd>Cmd/Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Z</kbd>                    | Toggle Focus Mode                          |
-| <kbd>Cmd/Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> | Toggle Super Focus Mode (Active pane only) |
+1. Download the Latest Release from the Releases section of the GitHub Repository
+2. Put files to your vault's plugins folder: `<vault>/.obsidian/plugins/alx-focus-mode`
+3. Reload Obsidian
+4. If prompted about Safe Mode, you can disable safe mode and enable the plugin.
+   Otherwise, head to Settings, third-party plugins, make sure safe mode is off and
+   enable the plugin from there.
 
----
-
-### Manually installing the plugin
-
--   Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/obsidian-focus-mode/`.
+> Note: The `.obsidian` folder may be hidden. On macOS, you should be able to press `Command+Shift+Dot` to show the folder in Finder.

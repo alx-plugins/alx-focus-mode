@@ -1,10 +1,10 @@
 {
-    "id": "obsidian-focus-mode",
-    "name": "Focus Mode",
-    "version": "1.4.0",
+    "id": "alx-focus-mode",
+    "name": "Focus Mode with Configurable Style",
+    "version": "0.0.0",
     "minAppVersion": "0.9.12",
-    "description": "Add Focus Mode to Obsidian.",
-    "author": "ryanpcmcquen",
-    "authorUrl": "https://github.com/ryanpcmcquen",
+    "description": "An fork of obsidian-focus-mode with custom control of focus mode style",
+    "author": "AidenLx",
+    "authorUrl": "https://github.com/AidenLx",
     "isDesktopOnly": true
 }
