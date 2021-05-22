@@ -1,10 +1,23 @@
 import { Plugin } from "obsidian";
+import { FocusModeSettingTab } from "settings";
+
+interface FocusModeSettings {
+	hideLeftRibbonEntirely: boolean;
+}
+
+const DEFAULT_SETTINGS: FocusModeSettings = {
+	hideLeftRibbonEntirely: false
+}
 
 export default class FocusMode extends Plugin {
+
+    settings: FocusModeSettings;
+
     focusModeActive = false;
 
     maximisedClass = "maximised";
     focusModeClass = "focus-mode";
+    hideLeftRibbonEntirelyClass = "hide-ribbon";
 
     enableSuperFocusMode() {
         // @ts-ignore
@@ -92,6 +105,17 @@ export default class FocusMode extends Plugin {
     async onload() {
         console.log("Loading Focus Mode plugin ...");
 
+        await this.loadSettings();
+
+        if (
+            this.settings.hideLeftRibbonEntirely &&
+            !document.body.classList.contains(this.focusModeClass)
+        ) {
+            document.body.classList.add(this.hideLeftRibbonEntirelyClass);
+        }
+
+        this.addSettingTab(new FocusModeSettingTab(this.app, this));
+
         this.addRibbonIcon(
             "enter",
             "Toggle Focus Mode (Shift + Click to show active pane only)",
@@ -122,4 +146,12 @@ export default class FocusMode extends Plugin {
     onunload() {
         console.log("Unloading Focus Mode plugin ...");
     }
+
+    async loadSettings() {
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+	}
+
+	async saveSettings() {
+		await this.saveData(this.settings);
+	}
 }
