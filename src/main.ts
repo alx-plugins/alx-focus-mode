@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
 import { FocusModeSettingTab } from "settings";
-import "./styles.css";
-
+import "./style/main.css";
+import "./style/left-ribbon.css";
 interface FocusModeSettings {
   hideLeftRibbonEntirely: boolean;
 }
