@@ -1,49 +1,52 @@
 .focus-mode .cm-s-obsidian div:not(.CodeMirror-activeline) > .CodeMirror-line {
-    opacity: 0.8;
-    filter: saturate(0.8);
+  opacity: 0.8;
+  filter: saturate(0.8);
 }
 .focus-mode .cm-s-obsidian div.CodeMirror-activeline > .CodeMirror-line {
-    font-weight: calc(var(--editor-font-weight) + 100);
+  font-weight: calc(var(--editor-font-weight) + 100);
 }
 
 .focus-mode div.view-header,
 .focus-mode div.status-bar,
 .focus-mode .workspace-split.maximised .workspace-leaf:not(.mod-active),
 .focus-mode
-    .workspace-split.maximised
-    .workspace-leaf.mod-active
-    ~ .workspace-split {
-    display: none;
+  .workspace-split.maximised
+  .workspace-leaf.mod-active
+  ~ .workspace-split {
+  display: none;
 }
 
 .focus-mode .view-content {
-    height: 100%;
+  height: 100%;
 }
 
 .focus-mode .workspace-split.maximised .workspace-leaf.mod-active {
-    /* 4px is for scrollbar width: */
-    flex-basis: calc(100% - 4px);
+  /* 4px is for scrollbar width: */
+  flex-basis: calc(100% - 4px);
 }
 
 /** for hidding left ribbon entirely */
 .focus-mode.hide-ribbon div.workspace-ribbon,
-.focus-mode.hide-ribbon div.workspace-ribbon.mod-left > :not(.side-dock-actions),
-.focus-mode.hide-ribbon div.workspace-ribbon.mod-left .side-dock-ribbon-action:not([aria-label="Toggle Focus Mode (Shift + Click to show active pane only)"]) {
-    display: none;
+.focus-mode.hide-ribbon
+  div.workspace-ribbon.mod-left
+  > :not(.side-dock-actions),
+.focus-mode.hide-ribbon
+  div.workspace-ribbon.mod-left
+  .side-dock-ribbon-action:not([aria-label="Toggle Focus Mode (Shift + Click to show active pane only)"]) {
+  display: none;
 }
 .focus-mode.hide-ribbon div.workspace-ribbon.mod-left {
-    display: block;
-    position: absolute !important;
+  display: block;
+  position: absolute !important;
 }
 
 /** for transparent left ribbon */
 .focus-mode div.workspace-ribbon {
-    visibility: hidden;
-  }
-.focus-mode div.workspace-ribbon:not(.mod-left) {
-    display: none;
+  visibility: hidden;
 }
-.focus-mode
-    .side-dock-ribbon-action[aria-label*="Toggle Focus Mode"] {
-    visibility: visible;
+.focus-mode div.workspace-ribbon:not(.mod-left) {
+  display: none;
+}
+.focus-mode .side-dock-ribbon-action[aria-label*="Toggle Focus Mode"] {
+  visibility: visible;
 }

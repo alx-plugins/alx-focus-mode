@@ -1,158 +1,147 @@
 import { Plugin } from "obsidian";
 import { FocusModeSettingTab } from "settings";
-import "./styles.css"
+import "./styles.css";
 
 interface FocusModeSettings {
-	hideLeftRibbonEntirely: boolean;
+  hideLeftRibbonEntirely: boolean;
 }
 
 const DEFAULT_SETTINGS: FocusModeSettings = {
-	hideLeftRibbonEntirely: true
-}
+  hideLeftRibbonEntirely: true,
+};
 
 export default class FocusMode extends Plugin {
+  settings: FocusModeSettings;
 
-    settings: FocusModeSettings;
+  focusModeActive = false;
 
-    focusModeActive = false;
+  maximisedClass = "maximised";
+  focusModeClass = "focus-mode";
+  hideLeftRibbonEntirelyClass = "hide-ribbon";
 
-    maximisedClass = "maximised";
-    focusModeClass = "focus-mode";
-    hideLeftRibbonEntirelyClass = "hide-ribbon";
+  enableSuperFocusMode() {
+    // @ts-ignore
+    this.app.workspace.rootSplit.containerEl.toggleClass(
+      this.maximisedClass,
+      // @ts-ignore
+      !this.app.workspace.rootSplit.containerEl.hasClass(this.maximisedClass),
+    );
 
-    enableSuperFocusMode() {
-        // @ts-ignore
-        this.app.workspace.rootSplit.containerEl.toggleClass(
-            this.maximisedClass,
-            // @ts-ignore
-            !this.app.workspace.rootSplit.containerEl.hasClass(
-                this.maximisedClass
-            )
-        );
+    // @ts-ignore
+    this.app.workspace.onLayoutChange();
 
-        // @ts-ignore
-        this.app.workspace.onLayoutChange();
-
-        if (!document.body.classList.contains(this.focusModeClass)) {
-            document.body.classList.add(this.focusModeClass);
-        }
-
-        // @ts-ignore
-        this.app.workspace.leftSplit.collapse();
-        // @ts-ignore
-        this.app.workspace.rightSplit.collapse();
-
-        this.focusModeActive = true;
-    }
-    enableFocusMode() {
-        if (
-            // @ts-ignore
-            this.app.workspace.rootSplit.containerEl.hasClass(
-                this.maximisedClass
-            )
-        ) {
-            // @ts-ignore
-            this.app.workspace.rootSplit.containerEl.removeClass(
-                this.maximisedClass
-            );
-            // @ts-ignore
-            this.app.workspace.onLayoutChange();
-        }
-
-        document.body.classList.toggle(
-            this.focusModeClass,
-            !document.body.classList.contains(this.focusModeClass)
-        );
-
-        // @ts-ignore
-        this.app.workspace.leftSplit.collapse();
-        // @ts-ignore
-        this.app.workspace.rightSplit.collapse();
-
-        this.focusModeActive = true;
-    }
-    disableFocusMode() {
-        if (
-            // @ts-ignore
-            this.app.workspace.rootSplit.containerEl.hasClass(
-                this.maximisedClass
-            )
-        ) {
-            // @ts-ignore
-            this.app.workspace.rootSplit.containerEl.removeClass(
-                this.maximisedClass
-            );
-            // @ts-ignore
-            this.app.workspace.onLayoutChange();
-        }
-
-        if (document.body.classList.contains(this.focusModeClass)) {
-            document.body.classList.remove(this.focusModeClass);
-        }
-
-        this.focusModeActive = false;
+    if (!document.body.classList.contains(this.focusModeClass)) {
+      document.body.classList.add(this.focusModeClass);
     }
 
-    toggleFocusMode(superFocus: boolean = false) {
-        if (superFocus) {
-            this.enableSuperFocusMode();
-        } else if (this.focusModeActive) {
-            this.disableFocusMode();
-        } else {
-            this.enableFocusMode();
-        }
+    // @ts-ignore
+    this.app.workspace.leftSplit.collapse();
+    // @ts-ignore
+    this.app.workspace.rightSplit.collapse();
+
+    this.focusModeActive = true;
+  }
+  enableFocusMode() {
+    if (
+      // @ts-ignore
+      this.app.workspace.rootSplit.containerEl.hasClass(this.maximisedClass)
+    ) {
+      // @ts-ignore
+      this.app.workspace.rootSplit.containerEl.removeClass(this.maximisedClass);
+      // @ts-ignore
+      this.app.workspace.onLayoutChange();
     }
 
-    async onload() {
-        console.log("Loading Focus Mode plugin ...");
+    document.body.classList.toggle(
+      this.focusModeClass,
+      !document.body.classList.contains(this.focusModeClass),
+    );
 
-        await this.loadSettings();
+    // @ts-ignore
+    this.app.workspace.leftSplit.collapse();
+    // @ts-ignore
+    this.app.workspace.rightSplit.collapse();
 
-        if (
-            this.settings.hideLeftRibbonEntirely &&
-            !document.body.classList.contains(this.focusModeClass)
-        ) {
-            document.body.classList.add(this.hideLeftRibbonEntirelyClass);
-        }
-
-        this.addSettingTab(new FocusModeSettingTab(this.app, this));
-
-        this.addRibbonIcon(
-            "enter",
-            "Toggle Focus Mode (Shift + Click to show active pane only)",
-            (event): void => {
-                this.toggleFocusMode(event.shiftKey);
-            }
-        );
-
-        this.addCommand({
-            id: "toggle-focus-mode",
-            name: "Toggle Focus Mode",
-            callback: () => {
-                this.toggleFocusMode();
-            },
-            hotkeys: [{ modifiers: ["Alt", "Mod"], key: "Z" }],
-        });
-
-        this.addCommand({
-            id: "toggle-super-focus-mode",
-            name: "Toggle Super Focus Mode (Active pane only)",
-            callback: () => {
-                this.toggleFocusMode(true);
-            },
-            hotkeys: [{ modifiers: ["Alt", "Mod", "Shift"], key: "Z" }],
-        });
+    this.focusModeActive = true;
+  }
+  disableFocusMode() {
+    if (
+      // @ts-ignore
+      this.app.workspace.rootSplit.containerEl.hasClass(this.maximisedClass)
+    ) {
+      // @ts-ignore
+      this.app.workspace.rootSplit.containerEl.removeClass(this.maximisedClass);
+      // @ts-ignore
+      this.app.workspace.onLayoutChange();
     }
 
-    onunload() {
-        console.log("Unloading Focus Mode plugin ...");
+    if (document.body.classList.contains(this.focusModeClass)) {
+      document.body.classList.remove(this.focusModeClass);
     }
 
-    async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-	}
+    this.focusModeActive = false;
+  }
 
-	async saveSettings() {
-		await this.saveData(this.settings);
-	}
+  toggleFocusMode(superFocus: boolean = false) {
+    if (superFocus) {
+      this.enableSuperFocusMode();
+    } else if (this.focusModeActive) {
+      this.disableFocusMode();
+    } else {
+      this.enableFocusMode();
+    }
+  }
+
+  async onload() {
+    console.log("Loading Focus Mode plugin ...");
+
+    await this.loadSettings();
+
+    if (
+      this.settings.hideLeftRibbonEntirely &&
+      !document.body.classList.contains(this.focusModeClass)
+    ) {
+      document.body.classList.add(this.hideLeftRibbonEntirelyClass);
+    }
+
+    this.addSettingTab(new FocusModeSettingTab(this.app, this));
+
+    this.addRibbonIcon(
+      "enter",
+      "Toggle Focus Mode (Shift + Click to show active pane only)",
+      (event): void => {
+        this.toggleFocusMode(event.shiftKey);
+      },
+    );
+
+    this.addCommand({
+      id: "toggle-focus-mode",
+      name: "Toggle Focus Mode",
+      callback: () => {
+        this.toggleFocusMode();
+      },
+      hotkeys: [{ modifiers: ["Alt", "Mod"], key: "Z" }],
+    });
+
+    this.addCommand({
+      id: "toggle-super-focus-mode",
+      name: "Toggle Super Focus Mode (Active pane only)",
+      callback: () => {
+        this.toggleFocusMode(true);
+      },
+      hotkeys: [{ modifiers: ["Alt", "Mod", "Shift"], key: "Z" }],
+    });
+  }
+
+  onunload() {
+    console.log("Unloading Focus Mode plugin ...");
+  }
+
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+  }
+
+  async saveSettings() {
+    await this.saveData(this.settings);
+  }
 }
