@@ -28,7 +28,7 @@
 /** for hidding left ribbon entirely */
 .focus-mode.hide-ribbon div.workspace-ribbon,
 .focus-mode.hide-ribbon div.workspace-ribbon.mod-left > :not(.side-dock-actions),
-.focus-mode.hide-ribbon div.workspace-ribbon.mod-left .side-dock-ribbon-action:not([aria-label*="Toggle Focus Mode"]) {
+.focus-mode.hide-ribbon div.workspace-ribbon.mod-left .side-dock-ribbon-action:not([aria-label="Toggle Focus Mode (Shift + Click to show active pane only)"]) {
     display: none;
 }
 .focus-mode.hide-ribbon div.workspace-ribbon.mod-left {
