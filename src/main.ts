@@ -1,17 +1,17 @@
 import { Plugin } from "obsidian";
-import { FocusModeSettingTab } from "settings";
+import { ALxFocusModeSettingTab } from "settings";
 import "./style/main.css";
 import "./style/left-ribbon.css";
-interface FocusModeSettings {
+interface ALxFocusModeSettings {
   hideLeftRibbonEntirely: boolean;
 }
 
-const DEFAULT_SETTINGS: FocusModeSettings = {
+const DEFAULT_SETTINGS: ALxFocusModeSettings = {
   hideLeftRibbonEntirely: true,
 };
 
-export default class FocusMode extends Plugin {
-  settings: FocusModeSettings;
+export default class ALxFocusMode extends Plugin {
+  settings: ALxFocusModeSettings;
 
   focusModeActive = false;
 
@@ -104,7 +104,7 @@ export default class FocusMode extends Plugin {
       document.body.classList.add(this.hideLeftRibbonEntirelyClass);
     }
 
-    this.addSettingTab(new FocusModeSettingTab(this.app, this));
+    this.addSettingTab(new ALxFocusModeSettingTab(this.app, this));
 
     this.addRibbonIcon(
       "enter",

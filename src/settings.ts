@@ -1,10 +1,10 @@
-import FocusMode from "main";
+import ALxFocusMode from "main";
 import { PluginSettingTab, App, Setting } from "obsidian";
 
-export class FocusModeSettingTab extends PluginSettingTab {
-  plugin: FocusMode;
+export class ALxFocusModeSettingTab extends PluginSettingTab {
+  plugin: ALxFocusMode;
 
-  constructor(app: App, plugin: FocusMode) {
+  constructor(app: App, plugin: ALxFocusMode) {
     super(app, plugin);
     this.plugin = plugin;
   }
