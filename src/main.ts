@@ -1,12 +1,13 @@
 import { Plugin } from "obsidian";
 import { FocusModeSettingTab } from "settings";
+import "./styles.css"
 
 interface FocusModeSettings {
 	hideLeftRibbonEntirely: boolean;
 }
 
 const DEFAULT_SETTINGS: FocusModeSettings = {
-	hideLeftRibbonEntirely: false
+	hideLeftRibbonEntirely: true
 }
 
 export default class FocusMode extends Plugin {
