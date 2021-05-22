@@ -2,6 +2,12 @@
 
 An fork of [obsidian-focus-mode](https://github.com/ryanpcmcquen/obsidian-focus-mode) that add custom control of focus mode style.
 
+|                  Function                  | Button at Left Ribbon  |                           Keyboard shortcut                            |
+| :----------------------------------------: | :--------------------: | :--------------------------------------------------------------------: |
+|             Toggle Focus Mode              |       Left Click       |          <kbd>Cmd/Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Z</kbd>           |
+| Toggle Super Focus Mode (Active pane only) |      Right Click       | <kbd>Cmd/Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd> |
+|              Exit Focus Mode               | Left Click/Right Click |                      Double press <kbd>Esc</kbd>                       |
+
 ## Installation
 
 ### From Obsidian

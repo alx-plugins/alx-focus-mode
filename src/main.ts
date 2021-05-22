@@ -124,11 +124,10 @@ export default class ALxFocusMode extends Plugin {
 
     this.addRibbonIcon(
       "enter",
-      "Toggle Focus Mode (Shift + Click to show active pane only)",
-      (event): void => {
-        this.toggleFocusMode(event.shiftKey);
-      },
-    );
+      "Toggle Focus Mode",
+      (event) => this.toggleFocusMode(false),
+    ).on("contextmenu", "*", (e) => this.toggleFocusMode(true));
+
 
     this.addCommand({
       id: "toggle-focus-mode",
