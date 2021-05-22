@@ -99,6 +99,8 @@ export default class ALxFocusMode extends Plugin {
 
     await this.loadSettings();
 
+    this.focusModeActive = document.body.classList.contains(this.focusModeClass);
+
     this.registerDomEvent(document, "keydown", (ev) => {
       if (
         this.focusModeActive &&
