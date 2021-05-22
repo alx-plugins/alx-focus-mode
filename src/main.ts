@@ -99,6 +99,15 @@ export default class ALxFocusMode extends Plugin {
 
     await this.loadSettings();
 
+    this.registerDomEvent(document, "dblclick", (ev) => {
+      if (
+        ev.target instanceof HTMLElement &&
+        ev.target.matches(".view-header-icon") &&
+        !this.focusModeActive
+      )
+        this.enableSuperFocusMode();
+    });
+    
     this.focusModeActive = document.body.classList.contains(this.focusModeClass);
 
     this.registerDomEvent(document, "keydown", (ev) => {
