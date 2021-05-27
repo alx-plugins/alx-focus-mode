@@ -20,6 +20,35 @@ export default class ALxFocusMode extends Plugin {
   focusModeClass = "focus-mode";
   hideLeftRibbonEntirelyClass = "hide-ribbon";
 
+  leftSplitCollapsed: boolean;
+  rightSplitCollapsed: boolean;
+
+  storeSplitsValues() {
+    // @ts-ignore
+    this.leftSplitCollapsed = this.app.workspace.leftSplit.collapsed;
+    // @ts-ignore
+    this.rightSplitCollapsed = this.app.workspace.rightSplit.collapsed;
+  }
+
+  collapseSplits() {
+    // @ts-ignore
+    this.app.workspace.leftSplit.collapse();
+    // @ts-ignore
+    this.app.workspace.rightSplit.collapse();
+  }
+
+  restoreSplits() {
+    if (!this.leftSplitCollapsed) {
+      // @ts-ignore
+      this.app.workspace.leftSplit.expand();
+    }
+
+    if (!this.rightSplitCollapsed) {
+      // @ts-ignore
+      this.app.workspace.rightSplit.expand();
+    }
+  }
+
   enableSuperFocusMode() {
     // @ts-ignore
     this.app.workspace.rootSplit.containerEl.toggleClass(
@@ -35,10 +64,7 @@ export default class ALxFocusMode extends Plugin {
       document.body.classList.add(this.focusModeClass);
     }
 
-    // @ts-ignore
-    this.app.workspace.leftSplit.collapse();
-    // @ts-ignore
-    this.app.workspace.rightSplit.collapse();
+    this.collapseSplits();
 
     this.focusModeActive = true;
   }
@@ -58,10 +84,8 @@ export default class ALxFocusMode extends Plugin {
       !document.body.classList.contains(this.focusModeClass),
     );
 
-    // @ts-ignore
-    this.app.workspace.leftSplit.collapse();
-    // @ts-ignore
-    this.app.workspace.rightSplit.collapse();
+    this.storeSplitsValues();
+    this.collapseSplits();
 
     this.focusModeActive = true;
   }
@@ -79,6 +103,8 @@ export default class ALxFocusMode extends Plugin {
     if (document.body.classList.contains(this.focusModeClass)) {
       document.body.classList.remove(this.focusModeClass);
     }
+
+    this.restoreSplits();
 
     this.focusModeActive = false;
   }
@@ -108,8 +134,10 @@ export default class ALxFocusMode extends Plugin {
       )
         this.enableSuperFocusMode();
     });
-    
-    this.focusModeActive = document.body.classList.contains(this.focusModeClass);
+
+    this.focusModeActive = document.body.classList.contains(
+      this.focusModeClass,
+    );
 
     this.registerDomEvent(document, "keydown", (ev) => {
       if (
@@ -132,12 +160,9 @@ export default class ALxFocusMode extends Plugin {
 
     this.addSettingTab(new ALxFocusModeSettingTab(this.app, this));
 
-    this.addRibbonIcon(
-      "enter",
-      "Toggle Focus Mode",
-      (event) => this.toggleFocusMode(false),
+    this.addRibbonIcon("enter", "Toggle Focus Mode", (event) =>
+      this.toggleFocusMode(false),
     ).on("contextmenu", "*", (e) => this.toggleFocusMode(true));
-
 
     this.addCommand({
       id: "toggle-focus-mode",
