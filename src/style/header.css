@@ -1,0 +1,26 @@
+.focus-mode:not(.plugin-tabs) div.view-header,
+.focus-mode.plugin-tabs .stayopen div.view-header {
+  max-height: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+.focus-mode:not(.plugin-tabs) div.view-header:hover,
+.focus-mode.plugin-tabs .stayopen div.view-header:hover {
+  max-height: 36px;
+}
+
+.focus-mode:not(.plugin-tabs) div.view-header *,
+.focus-mode.plugin-tabs .stayopen div.view-header * {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.focus-mode:not(.plugin-tabs) div.view-header:hover *,
+.focus-mode.plugin-tabs .stayopen div.view-header:hover * {
+  opacity: 1;
+}
+
+.focus-mode:not(.plugin-tabs) div.view-header .view-header-icon,
+.focus-mode.plugin-tabs .stayopen div.view-header .view-header-icon {
+  display: none !important;
+}

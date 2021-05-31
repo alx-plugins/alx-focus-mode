@@ -6,7 +6,6 @@
   font-weight: calc(var(--editor-font-weight) + 100);
 }
 
-.focus-mode div.view-header,
 .focus-mode div.status-bar,
 .focus-mode .workspace-split.maximised .workspace-leaf:not(.mod-active),
 .focus-mode

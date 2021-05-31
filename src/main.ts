@@ -2,7 +2,7 @@ import { Plugin } from "obsidian";
 import { ALxFocusModeSettingTab } from "settings";
 import "./style/main.css";
 import "./style/left-ribbon.css";
-import "./style/tabs.css";
+import "./style/header.css";
 interface ALxFocusModeSettings {
   hideLeftRibbonEntirely: boolean;
 }
